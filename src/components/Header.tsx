@@ -1,16 +1,15 @@
 import styled from "styled-components";
-import { motion, Variants } from "framer-motion";
+import { motion, useAnimation, useScroll, Variants } from "framer-motion";
 import { Link, useMatch } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Nav = styled.nav`
+const Nav = styled(motion.nav)`
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   width: 100%;
   top: 0;
-  background-color: black;
   font-size: 14px;
   padding: 20px 60px;
   color: white;
@@ -97,14 +96,47 @@ const Input = styled(motion.input)`
   border: 1px solid ${(props) => props.theme.white.lighter};
 `;
 
+const navVar: Variants = {
+  top: {
+    backgroundColor: "rgba(0,0,0,0)",
+  },
+  scroll: {
+    backgroundColor: "rgba(0,0,0,1)",
+  },
+};
+
 function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
-  const toggleSearch = () => setSearchOpen((prev) => !prev);
   const homeMatch = useMatch("");
   const tvMatch = useMatch("tv");
+  const inputAni = useAnimation();
+  const navAni = useAnimation();
+  const { scrollY } = useScroll();
+  const toggleSearch = () => {
+    if (searchOpen) {
+      inputAni.start({
+        scaleX: 0,
+      });
+    } else {
+      inputAni.start({
+        scaleX: 1,
+      });
+    }
+    setSearchOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    scrollY.onChange(() => {
+      if (scrollY.get() > 80) {
+        navAni.start("scroll");
+      } else {
+        navAni.start("top");
+      }
+    });
+  }, [scrollY, navAni]);
 
   return (
-    <Nav>
+    <Nav variants={navVar} initial={"top"} animate={navAni}>
       <Col>
         <Logo
           variants={logoVar}
@@ -150,7 +182,8 @@ function Header() {
           </motion.svg>
           <Input
             placeholder="Search..."
-            animate={{ scaleX: searchOpen ? 1 : 0 }}
+            animate={inputAni}
+            initial={{ scaleX: 0 }}
             transition={{ type: "linear" }}
           />
         </Search>
