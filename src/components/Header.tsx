@@ -47,6 +47,7 @@ const Item = styled.li`
     color: ${(props) => props.theme.white.lighter};
   }
   position: relative;
+  text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
 `;
 
 const Search = styled.span`
