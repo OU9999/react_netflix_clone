@@ -20,8 +20,25 @@ export interface IGetMoviesResult {
   total_results: number;
 }
 
-export function getMovies() {
+const categorys = ["now_playing", "upcoming", "popular", "top_rated"];
+
+export function getMovies_nowPlaying() {
   return fetch(
-    `${BASE_PATH}/movie/now_playing?api_key=${API_KEY}&language=ko-KR&page=1&region=kr`
+    `${BASE_PATH}/movie/${categorys[0]}?api_key=${API_KEY}&language=ko-KR&page=1&region=kr`
+  ).then((res) => res.json());
+}
+export function getMovies_upComing() {
+  return fetch(
+    `${BASE_PATH}/movie/${categorys[1]}?api_key=${API_KEY}&language=ko-KR&page=1&region=kr`
+  ).then((res) => res.json());
+}
+export function getMovies_popular() {
+  return fetch(
+    `${BASE_PATH}/movie/${categorys[2]}?api_key=${API_KEY}&language=ko-KR&page=1&region=kr`
+  ).then((res) => res.json());
+}
+export function getMovies_topRated() {
+  return fetch(
+    `${BASE_PATH}/movie/${categorys[3]}?api_key=${API_KEY}&language=ko-KR&page=1&region=kr`
   ).then((res) => res.json());
 }
