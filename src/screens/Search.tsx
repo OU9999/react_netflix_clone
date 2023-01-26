@@ -35,10 +35,10 @@ function Search() {
     `/search/:menuName/:searchId`
   );
 
-  const { data: data_search, isLoading: isLoading_search } =
-    useQuery<ISearchResult>(["search" + keyword], () =>
-      getSearchData(keyword as string)
-    );
+  const { data: data_search } = useQuery<ISearchResult>(
+    ["search" + keyword],
+    () => getSearchData(keyword as string)
+  );
   return (
     <>
       <Wrapper>
