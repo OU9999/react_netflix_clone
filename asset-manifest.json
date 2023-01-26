@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/react_netflix_clone/static/js/main.f5bd60f8.js",
+    "main.js": "/react_netflix_clone/static/js/main.8b0ce533.js",
     "index.html": "/react_netflix_clone/index.html",
-    "main.f5bd60f8.js.map": "/react_netflix_clone/static/js/main.f5bd60f8.js.map"
+    "main.8b0ce533.js.map": "/react_netflix_clone/static/js/main.8b0ce533.js.map"
   },
   "entrypoints": [
-    "static/js/main.f5bd60f8.js"
+    "static/js/main.8b0ce533.js"
   ]
 }
