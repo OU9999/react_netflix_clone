@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { IGetMoviesResult, IGetTvsResult } from "../api";
 import { makeImagePath } from "../utils";
 import { faPlay, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Cover = styled.div<{ bgphoto: string }>`
   height: 100vh;
@@ -38,7 +39,7 @@ const Buttons = styled.div`
   width: 40%;
 `;
 
-const Button = styled.button`
+const Button = styled(motion.button)`
   background: none;
   border: none;
   width: 12vw;
@@ -82,6 +83,10 @@ interface IBanner {
 }
 
 function Banner({ data, plat }: IBanner) {
+  const navigation = useNavigate();
+  const onBoxClicked = (movieId: number, plat: string) => {
+    navigation(`/${plat}/${movieId}`);
+  };
   return (
     <>
       <Cover
@@ -104,10 +109,15 @@ function Banner({ data, plat }: IBanner) {
             <FontAwesomeIcon icon={faPlay} />
             <span>재생</span>
           </Button>
-          <Button>
-            <FontAwesomeIcon icon={faCircleInfo} />
-            <Info>상세 정보</Info>
-          </Button>
+          <AnimatePresence>
+            <Button
+              onClick={() => onBoxClicked(data?.results[0].id as number, plat)}
+              layoutId={data?.results[0].id as any}
+            >
+              <FontAwesomeIcon icon={faCircleInfo} />
+              <Info>상세 정보</Info>
+            </Button>
+          </AnimatePresence>
         </Buttons>
       </Cover>
     </>
