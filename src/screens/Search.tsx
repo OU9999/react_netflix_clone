@@ -1,11 +1,6 @@
-import { AnimatePresence, motion, Variants } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useQuery } from "react-query";
-import {
-  PathMatch,
-  useLocation,
-  useMatch,
-  useNavigate,
-} from "react-router-dom";
+import { PathMatch, useLocation, useMatch } from "react-router-dom";
 import styled from "styled-components";
 import { getSearchData, ISearchResult } from "../api";
 import Modal from "../components/Modal";

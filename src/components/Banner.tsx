@@ -4,7 +4,6 @@ import { IGetMoviesResult, IGetTvsResult } from "../api";
 import { makeImagePath } from "../utils";
 import { faPlay, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 const Cover = styled.div<{ bgphoto: string }>`
   height: 100vh;
@@ -85,7 +84,11 @@ interface IBanner {
 function Banner({ data, plat }: IBanner) {
   return (
     <>
-      <Cover bgphoto={makeImagePath(data?.results[0].backdrop_path || "")}>
+      <Cover
+        bgphoto={makeImagePath(
+          data?.results[0].backdrop_path || data?.results[0].poster_path || ""
+        )}
+      >
         {plat === "movies" ? (
           <Title>{data?.results[0].title}</Title>
         ) : (

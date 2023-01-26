@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useQuery } from "react-query";
-import { useMatch, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getDetailData, IDetailInfo, IGenre } from "../api";
 import { makeImagePath } from "../utils";

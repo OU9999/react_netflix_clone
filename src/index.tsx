@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RouterProvider } from "react-router-dom";
@@ -32,14 +31,12 @@ const GlobalStyle = createGlobalStyle`
 const client = new QueryClient();
 
 root.render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <QueryClientProvider client={client}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      </QueryClientProvider>
-    </RecoilRoot>
-  </React.StrictMode>
+  <RecoilRoot>
+    <QueryClientProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </QueryClientProvider>
+  </RecoilRoot>
 );
