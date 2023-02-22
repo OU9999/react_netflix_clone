@@ -27,10 +27,11 @@ STACK
 - TS가 왜 많이 사용되고 유용한지 깨달음
 - RouterProvider에 관한 원하는 정보를 구글링해도 찾기가 어려웠는데 공식 문서를 보고 바로 해결함 역시 공식 문서를 잘 찾아봐야 한다
   `createBrowserRouter(routes,{basename: process.env.PUBLIC_URL,})`
+- api 개념 이해
 
 <hr>
+
 ### 챌린지에서 고치고 싶은점
-챌린지 시작 날짜 : 02.06
 
 - Modal 컴포넌트에서 영상 재생
 - Banner 컴포넌트 자동 슬라이드
